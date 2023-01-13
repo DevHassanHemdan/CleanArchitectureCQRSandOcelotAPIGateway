@@ -7,17 +7,17 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : BaseController
     {
         
         [HttpGet("GetAllProducts")]
-        //[Authorize]
         public async Task<List<Product>> GetAllProducts()
         {
             var response = await Mediator.Send(new GetAllProductsQuery());
@@ -36,10 +36,17 @@ namespace API.Controllers
         [HttpPost("CreateProduct")]
         public async Task<ProductDTO> CreateProduct([FromBody] ProductDTO productDTo)
         {
-            var user = _userManager.GetUserAsync(HttpContext.User);
             var response = await Mediator.Send(new AddProductCommand(productDTo));
 
-            return productDTo;
+            return response;
+        }
+
+        [HttpPut("UpdateProduct")]
+        public async Task<ProductDTO> UpdateProduct([FromBody] ProductDTO productDTo)
+        {
+            var response = await Mediator.Send(new UpdateProductCommand(productDTo));
+
+            return response;
         }
 
         [HttpPost("DeleteProduct")]

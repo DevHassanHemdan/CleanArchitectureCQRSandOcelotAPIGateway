@@ -39,8 +39,7 @@ namespace Application.CQRS.QueriesHandlers
                 return new UserDTO
                 {
                     DisplayName = user.UserName,
-                    Token = _jWTGenerator.CreateToken(user),
-                    Image = null
+                    Token = _jWTGenerator.CreateToken(user)
                 };
             }
 

@@ -9,9 +9,7 @@ namespace API.AutoMapper
         public MapperProfiler()
         {
             CreateMap<Product, ProductDTO>()
-                .ForMember(p => p.ProductName, opt => opt.MapFrom(y => y.Name))
-                .ForMember(p => p.ProductBrandId, opt => opt.MapFrom(y => y.ProductBrand.Id))
-                .ForMember(p => p.ProductTypeId, opt => opt.MapFrom(y => y.ProductType.Id));
+                .ForMember(p => p.ProductName, opt => opt.MapFrom(y => y.Name));
 
             CreateMap<ProductDTO, Product>()
                 .ForMember(p => p.Name, opt => opt.MapFrom(y => y.ProductName));

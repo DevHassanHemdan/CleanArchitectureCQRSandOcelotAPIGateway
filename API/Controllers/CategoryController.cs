@@ -8,18 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : BaseController
     {
-        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("GetAllCategories")]
-       
         public async Task<List<CategoriesDTO>> GetAllCategories()
         {
             var response = await Mediator.Send(new GetAllCategoriesQuery());
-
             return response;
         }
 

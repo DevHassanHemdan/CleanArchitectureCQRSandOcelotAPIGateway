@@ -26,28 +26,9 @@ namespace Presistance
                             LastName ="Hemdan",
                             Email="hassanhemdan92@gmail.com",
                             UserName = "Hassan Hemdan",
-                            Address = "Cairo",
-                            NormalizedUserName = "Hassan Hemdan"
-                        },
-                        new Users()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            FirstName= "Ali",
-                            LastName ="Fathi",
-                            Email="AliFathi@gmail.com",
-                            UserName = "Ali Fathi",
-                            Address = "Alex",
-                            NormalizedUserName = "Ali Fathi"
-                        },
-                        new Users()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            FirstName= "Ahmed",
-                            LastName ="Ali",
-                            Email="AAli@gmail.com",
-                            UserName = "Ahmed Ali",
-                            Address = "Giza",
-                            NormalizedUserName = "Ahmed Ali"
+                            Address = "Cairo, Egypt",
+                            NormalizedUserName = "Hassan Hemdan",
+                            NormalizedEmail= "hassanhemdan92@gmail.com"
                         }
                     };
                     foreach (Users user in users)
@@ -82,55 +63,6 @@ namespace Presistance
                     await context.Categories.AddRangeAsync(categories);
                 }
 
-                if (!context.ProductBrands.Any())
-                {
-                    List<ProductBrand> productBrands = new List<ProductBrand>()
-                        {
-                            new ProductBrand()
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Apple",
-                                CreatedOn = DateTime.Now
-                            }, new ProductBrand()
-                            {
-                                 Id = Guid.NewGuid(),
-                                Name = "Samsung",
-                                CreatedOn = DateTime.Now
-                            }, new ProductBrand()
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Nokia",
-                                CreatedOn = DateTime.Now
-                            }
-
-                        };
-                    await context.ProductBrands.AddRangeAsync(productBrands);
-                }
-
-                if (!context.ProductTypes.Any())
-                {
-                    List<ProductType> productTypes = new List<ProductType>()
-                        {
-                            new ProductType()
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Type 1",
-                                CreatedOn = DateTime.Now
-                            }, new ProductType()
-                            {
-                                 Id = Guid.NewGuid(),
-                                Name = "Type 2",
-                                CreatedOn = DateTime.Now
-                            }, new ProductType()
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Type 3",
-                                CreatedOn = DateTime.Now
-                            }
-
-                        };
-                    await context.ProductTypes.AddRangeAsync(productTypes);
-                }
                 
                 await context.SaveChangesAsync();
             }

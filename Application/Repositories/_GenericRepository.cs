@@ -81,6 +81,11 @@ namespace HotelListing.Core.Repository
             _context.Entry(entity).State = EntityState.Modified;
         }
 
+        public async Task<T> Where(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
         public async Task<T> GetEntityWithSpec(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();

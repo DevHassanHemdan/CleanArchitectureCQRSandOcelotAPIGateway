@@ -14,5 +14,6 @@ namespace API.Controllers
         private UserManager<Users> userManager;
         protected IMediator Mediator => _mediator ?? (_mediator = HttpContext.RequestServices.GetService<IMediator>());
         protected UserManager<Users> _userManager => userManager ?? (userManager = HttpContext.RequestServices.GetService<UserManager<Users>>());
+
     }
 }

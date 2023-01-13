@@ -19,6 +19,7 @@ namespace Application.IRepositories
         Task DeleteAsync(Guid id);
         void DeleteRangeAsync(IEnumerable<T> entities);
         void UpdateAsync(T entity);
+        Task<T> Where(Expression<Func<T, bool>> predicate);
 
     }
 }
