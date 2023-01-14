@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [Authorize(AuthenticationSchemes = "Bearer")]
+    //[AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : BaseController

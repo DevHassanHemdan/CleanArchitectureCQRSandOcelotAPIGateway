@@ -27,11 +27,15 @@ builder.Services.AddControllers(opt =>
     //To authorize our endpoints
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     opt.Filters.Add(new AuthorizeFilter(policy));
-});
+}).AddNewtonsoftJson();
 builder.Services.AddAutoMapper(typeof(Program));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+//{
+//    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+//}));
 builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -43,6 +47,7 @@ builder.Services.AddOptions();
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped(typeof(_IGenericRepository<>), typeof(_GenericRepository<>));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IJWTGenerator, JWTGenerator>();
 
 
@@ -93,6 +98,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//app.UseCors("corsapp");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

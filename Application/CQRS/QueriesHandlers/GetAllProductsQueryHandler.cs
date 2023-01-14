@@ -1,20 +1,23 @@
 ﻿using Application.CQRS.Queries;
+using Application.DTOs;
 using Application.IRepositories;
+using AutoMapper;
 using Domain;
 using MediatR;
 
 namespace Application.CQRS.QueriesHandlers
 {
-    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<Product>>
+    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<ProductDTO>>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork)
+        private readonly IProductRepository _IProductRepository;
+        public GetAllProductsQueryHandler(IProductRepository IProductRepository)
         {
-            _unitOfWork = unitOfWork;
+            _IProductRepository= IProductRepository;
         }
-        public async Task<List<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProductDTO>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.Repository<Product>().GetAllAsync();
+            var products = await _IProductRepository.GetAllProducts();
+            return products;
         }
     }
 }

@@ -12,13 +12,14 @@ using System.Security.Claims;
 namespace API.Controllers
 {
     [Authorize(AuthenticationSchemes = "Bearer")]
+    //[AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : BaseController
     {
         
         [HttpGet("GetAllProducts")]
-        public async Task<List<Product>> GetAllProducts()
+        public async Task<List<ProductDTO>> GetAllProducts()
         {
             var response = await Mediator.Send(new GetAllProductsQuery());
 
@@ -26,9 +27,9 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Product> GetProductById(Guid id)
+        public async Task<Product> GetProductById(Guid productId)
         {
-            var response = await Mediator.Send(new GetProductByIdQuery(id));
+            var response = await Mediator.Send(new GetProductByIdQuery(productId));
 
             return response;
         }
@@ -49,7 +50,7 @@ namespace API.Controllers
             return response;
         }
 
-        [HttpPost("DeleteProduct")]
+        [HttpDelete("DeleteProduct")]
         public async Task<int> DeleteProduct(Guid productId)
         {
             return await Mediator.Send(new DeleteProductCommand(productId));

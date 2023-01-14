@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="jumbtron">
+    <h1 class="display-4 text-center">Product Details</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <app-create-product></app-create-product>
+    </div>
+
+    <div class="col-md-6">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of this.productService.products">
+            <td (click)="PouplateForm(p)">{{ p.productName }}</td>
+            <td (click)="PouplateForm(p)">{{ p.description }}</td>
+            <td (click)="PouplateForm(p)">{{ p.price }}</td>
+            <td (click)="PouplateForm(p)">{{ p.categoryName }}</td>
+            <td (click)="onDeleteProduct(p.id)">
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

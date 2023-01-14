@@ -1,0 +1,76 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="container-fluid">
+    <input type="hidden" name="Id" [value]="productService.formData.id" />
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input
+            name="productName"
+            #productName="ngModel"
+            [(ngModel)]="productService.formData.productName"
+            type="text"
+            class="form-control"
+            placeholder="Product Name"
+            required="required"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Price</label>
+          <input
+            name="price"
+            #price="ngModel"
+            [(ngModel)]="productService.formData.price"
+            type="text"
+            class="form-control"
+            placeholder="Price"
+            required="required"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Description</label>
+          <input
+            name="description"
+            #description="ngModel"
+            [(ngModel)]="productService.formData.description"
+            type="text"
+            class="form-control"
+            placeholder="Description"
+            required="required"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Category</label>
+          <select
+            class="form-control"
+            name="categoryId"
+            #categoryId="ngModel"
+            [(ngModel)]="productService.formData.categoryId"
+            required="required"
+          >
+            <option
+              *ngFor="let c of categoryService.categories"
+              [ngValue]="c.categoryId"
+            >
+              {{ c.categoryName }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success" type="submit" [disabled]="form.invalid">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>

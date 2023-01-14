@@ -12,7 +12,7 @@ namespace API.Controllers
     public class UserController : BaseController
     {
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> Login(LoginQuery login)
+        public async Task<ActionResult<UserDTO>> Login([FromBody]LoginQuery login)
         {
             return await Mediator.Send(login);
         }

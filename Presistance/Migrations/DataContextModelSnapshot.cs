@@ -72,10 +72,6 @@ namespace Presistance.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PictureUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 

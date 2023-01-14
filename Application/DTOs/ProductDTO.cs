@@ -16,10 +16,8 @@ namespace Application.DTOs
         public Guid CreatedBy { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public string PictureUrl { get; set; }
         public Guid CategoryId { get; set; }
-        public Guid ProductTypeId { get; set; }
-        public Guid ProductBrandId { get; set; }
+        public string CategoryName{ get; set; }
 
     }
 }

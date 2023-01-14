@@ -30,7 +30,6 @@ namespace Application.CQRS.CommandsHandlers
                 product.Name = request._product.ProductName;
                 product.Price = request._product.Price;
                 product.Description = request._product.Description;
-                product.PictureUrl = request._product.PictureUrl;
                 product.CategoryId = request._product.CategoryId;
 
                 _unitOfWork.Repository<Product>().UpdateAsync(product);
